@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="hi">
+<meta name="description" content="必要的安装工作 安装Node.js 安装Git   Note: 推荐两篇关于Git的官方文档:  安装Git 请查阅文档 初次使用Git的配置 请查阅文档   利用hexo初始化博客1.安装hexo执行如下命令： 1npm install -g hexo 2.初始化123hexo init myblogcd myblognpm install  Note: 文件目录的问题:  如果运行命令的目录是">
 <meta name="keywords" content="hexo,教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客的搭建">
+<meta property="og:title" content="使用Hexo+github page搭建自己的博客">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/博客的创建/index.html">
 <meta property="og:site_name" content="志当存高远">
-<meta property="og:description" content="hi">
-<meta property="og:updated_time" content="2017-06-05T02:39:55.211Z">
+<meta property="og:description" content="必要的安装工作 安装Node.js 安装Git   Note: 推荐两篇关于Git的官方文档:  安装Git 请查阅文档 初次使用Git的配置 请查阅文档   利用hexo初始化博客1.安装hexo执行如下命令： 1npm install -g hexo 2.初始化123hexo init myblogcd myblognpm install  Note: 文件目录的问题:  如果运行命令的目录是">
+<meta property="og:updated_time" content="2017-06-05T07:23:15.213Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客的搭建">
-<meta name="twitter:description" content="hi">
+<meta name="twitter:title" content="使用Hexo+github page搭建自己的博客">
+<meta name="twitter:description" content="必要的安装工作 安装Node.js 安装Git   Note: 推荐两篇关于Git的官方文档:  安装Git 请查阅文档 初次使用Git的配置 请查阅文档   利用hexo初始化博客1.安装hexo执行如下命令： 1npm install -g hexo 2.初始化123hexo init myblogcd myblognpm install  Note: 文件目录的问题:  如果运行命令的目录是">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title> 博客的搭建 | 志当存高远 </title>
+  <title> 使用Hexo+github page搭建自己的博客 | 志当存高远 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -281,7 +281,7 @@
             
             
               
-                博客的搭建
+                使用Hexo+github page搭建自己的博客
               
             
           </h1>
@@ -365,7 +365,69 @@
       
 
       
-        <h1 id="hi"><a href="#hi" class="headerlink" title="hi"></a>hi</h1>
+        <h2 id="必要的安装工作"><a href="#必要的安装工作" class="headerlink" title="必要的安装工作"></a>必要的安装工作</h2><ul>
+<li>安装Node.js</li>
+<li>安装Git</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> 推荐两篇关于Git的官方文档:</p>
+<ul>
+<li><strong>安装Git</strong> 请查阅<a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="external">文档</a></li>
+<li><strong>初次使用Git的配置</strong> 请查阅<a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="external">文档</a></li>
+</ul>
+</blockquote>
+<h2 id="利用hexo初始化博客"><a href="#利用hexo初始化博客" class="headerlink" title="利用hexo初始化博客"></a>利用hexo初始化博客</h2><h3 id="1-安装hexo"><a href="#1-安装hexo" class="headerlink" title="1.安装hexo"></a>1.安装hexo</h3><p>执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2.初始化"></a>2.初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init myblog</div><div class="line">cd myblog</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Note:</strong> 文件目录的问题:</p>
+<ul>
+<li>如果运行命令的目录是在<strong>d</strong>盘，那么在init myblog之后，你会在d盘发现<strong>myblog</strong>文件夹</li>
+</ul>
+</blockquote>
+<h3 id="3-生成网站"><a href="#3-生成网站" class="headerlink" title="3.生成网站"></a>3.生成网站</h3><p>myblog目录下执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;my first blog&quot;</div><div class="line">hexo g</div></pre></td></tr></table></figure>
+<h3 id="4-利用本地服务器查看"><a href="#4-利用本地服务器查看" class="headerlink" title="4.利用本地服务器查看"></a>4.利用本地服务器查看</h3><p>myblog目录下执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Note:</strong> :</p>
+<ul>
+<li>此时在浏览器输入localhost:4000便可以查看你的博客demo</li>
+</ul>
+</blockquote>
+<h2 id="将本地创建的博客发布到github"><a href="#将本地创建的博客发布到github" class="headerlink" title="将本地创建的博客发布到github"></a>将本地创建的博客发布到github</h2><h3 id="1-在github上创建Repository"><a href="#1-在github上创建Repository" class="headerlink" title="1.在github上创建Repository"></a>1.在github上创建Repository</h3><p>github地址请点<a href="https://github.com/" target="_blank" rel="external">这里</a></p>
+<h3 id="2-配置SSH-Key"><a href="#2-配置SSH-Key" class="headerlink" title="2.配置SSH-Key"></a>2.配置SSH-Key</h3><p>阅读<a href="http://jingyan.baidu.com/article/a65957f4e91ccf24e77f9b11.html" target="_blank" rel="external">此文档</a></p>
+<h3 id="3-使用hexo-deploy部署"><a href="#3-使用hexo-deploy部署" class="headerlink" title="3.使用hexo deploy部署"></a>3.使用hexo deploy部署</h3><blockquote>
+<p>打开myblog目录里的_config.yml，找到deploy字段，配置如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	type:git</div><div class="line">	repo:git@github.com:username/repository(eg.git@github.com:zhangsan/zhangsan.github.io)</div><div class="line">	branch:master</div></pre></td></tr></table></figure>
+<blockquote>
+<p>安装hexo-deployer-git扩展</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<blockquote>
+<p>部署</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
+<p>部署成功后，在浏览器输入自己的repository名字便可看到你的博客</p>
+<h2 id="购买域名并解析到github"><a href="#购买域名并解析到github" class="headerlink" title="购买域名并解析到github"></a>购买域名并解析到github</h2><blockquote>
+<p>进入万维网进行域名绑定</p>
+<ul>
+<li>进入万维网购买域名</li>
+<li>购买完成后点击域名管理，点击解析，填入你的仓库名字并加个“.”，例如:<strong>zhangsan.github.io.</strong></li>
+</ul>
+<p>进入public文件夹，新建CNAME，写入域名</p>
+<ul>
+<li>在myblog-&gt;public文件夹里新建CNAME文件，写入你购买的域名</li>
+</ul>
+<p>传入给github仓库</p>
+<ul>
+<li>执行<strong>hexo d</strong>传入guthub仓库</li>
+</ul>
+</blockquote>
+<p>完成上述步骤后，浏览器输入你的域名便可以访问。</p>
+<h2 id="美化hexo"><a href="#美化hexo" class="headerlink" title="美化hexo"></a>美化hexo</h2><p>推荐使用<strong>NexT</strong>主题，具体配置流程请访问NexT官网，<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">点击开始你自己的美化之旅吧</a></p>
+
       
     </div>
 
@@ -575,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hi"><span class="nav-number">1.</span> <span class="nav-text">hi</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#必要的安装工作"><span class="nav-number">1.</span> <span class="nav-text">必要的安装工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用hexo初始化博客"><span class="nav-number">2.</span> <span class="nav-text">利用hexo初始化博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装hexo"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-初始化"><span class="nav-number">2.2.</span> <span class="nav-text">2.初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-生成网站"><span class="nav-number">2.3.</span> <span class="nav-text">3.生成网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-利用本地服务器查看"><span class="nav-number">2.4.</span> <span class="nav-text">4.利用本地服务器查看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将本地创建的博客发布到github"><span class="nav-number">3.</span> <span class="nav-text">将本地创建的博客发布到github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在github上创建Repository"><span class="nav-number">3.1.</span> <span class="nav-text">1.在github上创建Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置SSH-Key"><span class="nav-number">3.2.</span> <span class="nav-text">2.配置SSH-Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用hexo-deploy部署"><span class="nav-number">3.3.</span> <span class="nav-text">3.使用hexo deploy部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#购买域名并解析到github"><span class="nav-number">4.</span> <span class="nav-text">购买域名并解析到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#美化hexo"><span class="nav-number">5.</span> <span class="nav-text">美化hexo</span></a></li></ol></div>
             
 
           </div>
@@ -719,7 +781,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2017/06/02/博客的创建/';
           this.page.identifier = '2017/06/02/博客的创建/';
-          this.page.title = '博客的搭建';
+          this.page.title = '使用Hexo+github page搭建自己的博客';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
