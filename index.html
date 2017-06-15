@@ -478,8 +478,7 @@
 
       
         
-          
-            <h2 id="jvm管理的内存"><a href="#jvm管理的内存" class="headerlink" title="jvm管理的内存"></a>jvm管理的内存</h2><p>java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示：<br><img src="http://images2015.cnblogs.com/blog/541001/201610/541001-20161018202447201-1196213268.png" alt="avatar"></p>
+          <h2 id="jvm管理的内存"><a href="#jvm管理的内存" class="headerlink" title="jvm管理的内存"></a>jvm管理的内存</h2><p>java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示：<br><img src="http://images2015.cnblogs.com/blog/541001/201610/541001-20161018202447201-1196213268.png" alt="avatar"></p>
 <h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各线程之间计数器互不影响，所以这部分即为线程私有的区域。</p>
 <blockquote>
 <p><strong>Note:</strong> </p>
@@ -488,71 +487,13 @@
 <li>此内存区是没有规定任何OutOfMemoryError情况的区域</li>
 </ul>
 </blockquote>
-<h3 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h3><p>同程序计数器，虚拟机栈为程序私有的，即每一个线程都拥有一个私有的栈空间。<br>虚拟机栈描述的是java方法执行的内存模型：每个方法在执行时都会创建一个栈帧，里面存放着局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用到执行完成就对应的一个栈帧入栈到出栈的过程。</p>
-<blockquote>
-<p>局部变量表存放着编译期可知的各种基本数据类型、对象引用类型（不等同于对象）</p>
-<ul>
-<li>局部变量表所需要的空间在编译期间完成分配，当进入一个方法时，这个方法需要在帧中分配多大的空间是完全确定的，运行期间并不会改变</li>
-</ul>
-<p><strong>Note:</strong> </p>
-<ul>
-<li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常</li>
-<li>若虚拟机允许动态扩展，但在扩展时无法申请到足够内存，就会抛出OutOfMemoryError异常</li>
-</ul>
-</blockquote>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的唯一区别在于虚拟机栈为java方法服务，而本地方法栈为使用到的Native方法服务</p>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>在Sun HotSpot虚拟机中直接将本地方法栈与虚拟机栈合二为一</li>
-</ul>
-</blockquote>
-<h3 id="java堆"><a href="#java堆" class="headerlink" title="java堆"></a>java堆</h3><p>java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建，唯一目的就是存放对象实例。java堆是垃圾回收器管理的主要区域，本文目前只关注内存区域，对于垃圾回收将在后续文章中介绍。</p>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>如果在堆中没有内存完成实例分配，并且堆无法再继续扩展时，将会抛出OutOfMemory异常</li>
-<li>java堆可以处于物理上不连续的内存空间，但在逻辑上必须是连续的</li>
-</ul>
-</blockquote>
-<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>方法区也是线程共享的，它用于存储已被虚拟机加载的类信息、常量、静态常量、即时编译后的代码等数据。</p>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>方法区可以选择不进行垃圾回收，但并非数据进入方法区就永久存在，这区域的回收目标主要是针对常量池的回收和对类型的卸载。同时这部分的回收是完全必要的，Sun公司出现过若干个BUG就是由于虚拟机未对这一区域未完全回收而导致内存泄漏</li>
-<li>同样会抛出OutOfMemoryError异常</li>
-</ul>
-</blockquote>
-<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><blockquote>
-<p>举个简单的例子</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class A&#123;</div><div class="line">//静态变量j存放在方法区中</div><div class="line">	tatic int j = 0;</div><div class="line">//run()方法为栈帧，从入栈到出栈</div><div class="line">	public void run()&#123;</div><div class="line"> 		// i的值存放在run()的栈帧里</div><div class="line"> 		int i = 0;</div><div class="line"> 		// object对象本身存放在堆中，obj作为对象的引用放在run（）的栈帧中</div><div class="line"> 		object obj = new Object();</div><div class="line"> 	&#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>java堆溢出</strong>（OOM）<br>Java 堆用于存储对象实例，只要不断地创建对象，并且保证 GC Roots 到对象之间有可达路径来避免垃圾回收机制清除这些对象，那么在对象数量达到最大堆的容量限制后就会产生内存溢出异常。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * VM Args: -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError</div><div class="line"> * @author zgq</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class HeapOOM &#123;</div><div class="line">	</div><div class="line">	static class OOMObject&#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		List&lt;OOMObject&gt; list = new ArrayList&lt;OOMObject&gt;();</div><div class="line">		while(true)&#123;</div><div class="line">			list.add(new OOMObject());</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>示例分析</strong><br>Java 堆内存的 OOM 异常是实际应用中常见的内存异常情况。当出现 Java 堆内存溢出时，会报错误信息 java.lang.OutOfMemoryError，会跟着进一步提示 Java heap space。<br>出现这个异常之后，首先需要确定内存中的数据是否是必要，也就是要先分清楚是出现了内存泄露（Memory Leak）还是内存溢出（Memory Overflow）。</p>
-<ul>
-<li><p>如果是内存泄露，可进一步通过工具查看泄露对象到 GC Roots 的引用链。于是就能找到对象是通过怎样的路径与 GC Roots 相关联并导致垃圾收集器无法自动回收它们的，这样就就可以定位出泄露代码的位置；</p>
-</li>
-<li><p>如果不是内存泄露，需要检查一下虚拟机的参数（-Xmx 与 -Xms），与物理机内存对比看是否还可以调大，然后再检查一下代码，是否存在某些对象生命周期过长、持有状态时间过长的情况，尝试减少程序运行期的内存消耗。</p>
-</li>
-</ul>
-<p><strong>java栈溢出</strong><br>由于在 HotSpot 虚拟机中并不区分虚拟机栈而本地方法栈。因此，对于 HotSpot 来说，虽然 -Xoss 参数（设置本地方法栈大小）存在，但实际上无效的，栈容量只由 -Xss 参数设定。对于虚拟机栈和本地方法栈，在 Java 虚拟机中描述了两种异常：</p>
-<ul>
-<li>如果线程请求的栈深度大于虚拟机所允许的最大深度，将抛出 StackOverflowError 异常；</li>
-<li>如果虚拟机在扩展栈时无法申请到足够的内存空间，则将抛出 OutOfMemoryError 异常。</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * VM Args: -Xss256k</div><div class="line"> */</div><div class="line">public class StackTest1 &#123;</div><div class="line">    private int stackLength=1;</div><div class="line">    public void stackLeak()&#123;</div><div class="line">        stackLength++;</div><div class="line">        stackLeak();</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args) throws Throwable&#123;</div><div class="line">        StackTest1 stackTest1=new StackTest1();</div><div class="line">        try &#123;</div><div class="line">            stackTest1.stackLeak();</div><div class="line">        &#125;catch (Throwable e)&#123;</div><div class="line">            System.out.println(&quot;stack length: &quot;+stackTest1.stackLength);</div><div class="line">            throw e;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>示例分析</strong></p>
-</blockquote>
-<p>根据上面的测试结果表明：在单个线程下，无论是由于栈帧太大还是虚拟机栈容量太小，当内存无法分配的时候，虚拟机抛出的都是 StackOverflowError 异常。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章总结了JVM的数据区的内存分配，下篇将分析JVM的垃圾回收机制。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/07/深入学习jvm（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -692,8 +633,7 @@
 
       
         
-          
-            <h2 id="必要的安装工作"><a href="#必要的安装工作" class="headerlink" title="必要的安装工作"></a>必要的安装工作</h2><ul>
+          <h2 id="必要的安装工作"><a href="#必要的安装工作" class="headerlink" title="必要的安装工作"></a>必要的安装工作</h2><ul>
 <li>安装Node.js</li>
 <li>安装Git</li>
 </ul>
@@ -708,55 +648,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
 <h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2.初始化"></a>2.初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init myblog</div><div class="line">cd myblog</div><div class="line">npm install</div></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>Note:</strong> 文件目录的问题:</p>
-<ul>
-<li>如果运行命令的目录是在<strong>d</strong>盘，那么在init myblog之后，你会在d盘发现<strong>myblog</strong>文件夹</li>
-</ul>
-</blockquote>
-<h3 id="3-生成网站"><a href="#3-生成网站" class="headerlink" title="3.生成网站"></a>3.生成网站</h3><p>myblog目录下执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;my first blog&quot;</div><div class="line">hexo g</div></pre></td></tr></table></figure>
-<h3 id="4-利用本地服务器查看"><a href="#4-利用本地服务器查看" class="headerlink" title="4.利用本地服务器查看"></a>4.利用本地服务器查看</h3><p>myblog目录下执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Note:</strong> :</p>
-<ul>
-<li>此时在浏览器输入localhost:4000便可以查看你的博客demo</li>
-</ul>
-</blockquote>
-<h2 id="将本地创建的博客发布到github"><a href="#将本地创建的博客发布到github" class="headerlink" title="将本地创建的博客发布到github"></a>将本地创建的博客发布到github</h2><h3 id="1-在github上创建Repository"><a href="#1-在github上创建Repository" class="headerlink" title="1.在github上创建Repository"></a>1.在github上创建Repository</h3><p>github地址请点<a href="https://github.com/" target="_blank" rel="external">这里</a></p>
-<h3 id="2-配置SSH-Key"><a href="#2-配置SSH-Key" class="headerlink" title="2.配置SSH-Key"></a>2.配置SSH-Key</h3><p>阅读<a href="http://jingyan.baidu.com/article/a65957f4e91ccf24e77f9b11.html" target="_blank" rel="external">此文档</a></p>
-<h3 id="3-使用hexo-deploy部署"><a href="#3-使用hexo-deploy部署" class="headerlink" title="3.使用hexo deploy部署"></a>3.使用hexo deploy部署</h3><blockquote>
-<p>打开myblog目录里的_config.yml，找到deploy字段，配置如下：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	type:git</div><div class="line">	repo:git@github.com:username/repository(eg.git@github.com:zhangsan/zhangsan.github.io)</div><div class="line">	branch:master</div></pre></td></tr></table></figure>
-<blockquote>
-<p>安装hexo-deployer-git扩展</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<blockquote>
-<p>部署</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
-<p>部署成功后，在浏览器输入自己的repository名字便可看到你的博客</p>
-<h2 id="购买域名并解析到github"><a href="#购买域名并解析到github" class="headerlink" title="购买域名并解析到github"></a>购买域名并解析到github</h2><blockquote>
-<p>进入万维网进行域名绑定</p>
-<ul>
-<li>进入万维网购买域名</li>
-<li>购买完成后点击域名管理，点击解析，填入你的仓库名字并加个“.”，例如:<strong>zhangsan.github.io.</strong></li>
-</ul>
-<p>进入public文件夹，新建CNAME，写入域名</p>
-<ul>
-<li>在myblog-&gt;public文件夹里新建CNAME文件，写入你购买的域名</li>
-</ul>
-<p>传入给github仓库</p>
-<ul>
-<li>执行<strong>hexo d</strong>传入guthub仓库</li>
-</ul>
-</blockquote>
-<p>完成上述步骤后，浏览器输入你的域名便可以访问。</p>
-<h2 id="美化hexo"><a href="#美化hexo" class="headerlink" title="美化hexo"></a>美化hexo</h2><p>推荐使用<strong>NexT</strong>主题，具体配置流程请访问NexT官网，<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">点击开始你自己的美化之旅吧</a></p>
-
-          
+<p><strong>Note:</strong> 文件目录的问题:<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/02/博客的创建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
