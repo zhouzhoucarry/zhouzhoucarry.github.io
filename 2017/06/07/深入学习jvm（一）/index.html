@@ -87,19 +87,20 @@
 
 
 
-<meta name="description" content="jvm管理的内存java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示： 程序计数器程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独">
+<meta name="description" content="在你生命的最初30年中，你养成习惯；在你生命的最后30年中，你的习惯决定了你。  jvm管理的内存java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示： 程序计数器程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入学习jvm之java内存区">
 <meta property="og:url" content="http://yoursite.com/2017/06/07/深入学习jvm（一）/index.html">
 <meta property="og:site_name" content="志当存高远">
-<meta property="og:description" content="jvm管理的内存java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示： 程序计数器程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独">
+<meta property="og:description" content="在你生命的最初30年中，你养成习惯；在你生命的最后30年中，你的习惯决定了你。  jvm管理的内存java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示： 程序计数器程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执">
+<meta property="og:image" content="http://www.a6k9.com/img/0/566a7721637ef.jpg">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/541001/201610/541001-20161018202447201-1196213268.png">
-<meta property="og:updated_time" content="2017-06-15T10:01:42.346Z">
+<meta property="og:updated_time" content="2017-06-16T09:47:06.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入学习jvm之java内存区">
-<meta name="twitter:description" content="jvm管理的内存java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示： 程序计数器程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/541001/201610/541001-20161018202447201-1196213268.png">
+<meta name="twitter:description" content="在你生命的最初30年中，你养成习惯；在你生命的最后30年中，你的习惯决定了你。  jvm管理的内存java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示： 程序计数器程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执">
+<meta name="twitter:image" content="http://www.a6k9.com/img/0/566a7721637ef.jpg">
 
 
 
@@ -356,7 +357,11 @@
       
 
       
-        <h2 id="jvm管理的内存"><a href="#jvm管理的内存" class="headerlink" title="jvm管理的内存"></a>jvm管理的内存</h2><p>java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示：<br><img src="http://images2015.cnblogs.com/blog/541001/201610/541001-20161018202447201-1196213268.png" alt="avatar"></p>
+        <p><img src="http://www.a6k9.com/img/0/566a7721637ef.jpg" alt="此处输入图片的描述"></p>
+<blockquote>
+<p><em>在你生命的最初30年中，你养成习惯；在你生命的最后30年中，你的习惯决定了你。</em></p>
+</blockquote>
+<h2 id="jvm管理的内存"><a href="#jvm管理的内存" class="headerlink" title="jvm管理的内存"></a>jvm管理的内存</h2><p>java虚拟机在执行java程序的过程中将其所管理的内存划分为若干个不同的数据区域，如下图所示：<br><img src="http://images2015.cnblogs.com/blog/541001/201610/541001-20161018202447201-1196213268.png" alt="avatar"></p>
 <h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是一块较小的内存空间，它可以看作是当前线程所执行的字节码的信号指示器。由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各线程之间计数器互不影响，所以这部分即为线程私有的区域。</p>
 <blockquote>
 <p><strong>Note:</strong> </p>
@@ -481,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/15/深入学习JVM（二）/" rel="prev" title="深入学习JVM（二）">
-                深入学习JVM（二） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/15/深入学习JVM（二）/" rel="prev" title="深入学习jvm之java垃圾回收机制">
+                深入学习jvm之java垃圾回收机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,7 +622,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
